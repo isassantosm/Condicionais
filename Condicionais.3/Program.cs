@@ -9,20 +9,23 @@
 
 
 Console.WriteLine("""
-------- JOKENPÔ -------
-  Escolha sua jogada:
-      1 - Pedra
-      2 - Papel
-      3 - Tesoura
-      
-""");
+                  ------- JOKENPÔ -------
+                    Escolha sua jogada:
+                        1 - Pedra
+                        2 - Papel
+                        3 - Tesoura
+                        
+                  """);
 Console.Write("sua opção: ");
-var opcaoUsuario = Convert.ToUInt32(Console.ReadLine());
-while (opcaoUsuario < 1 || opcaoUsuario > 3)
+int opcaoUsuario;
+bool converteuOpcao = int.TryParse(Console.ReadLine(), out opcaoUsuario);
+
+while (opcaoUsuario < 1 || opcaoUsuario > 3 || !converteuOpcao)
 {
- Console.Write("Opção invalida! escolha novamente: ");
- opcaoUsuario = Convert.ToUInt32(Console.ReadLine());
+    Console.Write("Opção invalida! escolha novamente: ");
+    opcaoUsuario = Convert.ToInt32(Console.ReadLine());
 }
+
 var aleatorio = new Random();
 int opcaoComputador = aleatorio.Next(1, 4);
 // Estrutura Switch-Case
@@ -36,14 +39,15 @@ switch (opcaoUsuario)
     case 2:
         escolhaUsuarioTexto = "Papel";
         break;
-    case 3: 
+
+    case 3:
         escolhaUsuarioTexto = "tesoura";
         break;
     default:
         escolhaUsuarioTexto = "nenhum";
         break;
-           
 }
+
 switch (opcaoComputador)
 {
     case 1:
@@ -52,14 +56,13 @@ switch (opcaoComputador)
     case 2:
         escolhaComputadorTexto = "Papel";
         break;
-    case 3: 
+    case 3:
         escolhaComputadorTexto = "tesoura";
         break;
     default:
         escolhaComputadorTexto = "nenhum";
         break;
-        
 }
 
 
-Console.WriteLine($"O usuario escolheu {escolhaUsuarioTexto} e o computador escolheu {escolhaComputadorTexto}");    
+Console.WriteLine($"O usuario escolheu {escolhaUsuarioTexto} e o computador escolheu {escolhaComputadorTexto}");
